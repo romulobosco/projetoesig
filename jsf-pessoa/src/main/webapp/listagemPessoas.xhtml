@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">  
+
+<h:head>
+    <title>Lista de Pessoas e Salários</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h1>Lista de Pessoas com Salário</h1>
+
+        <h:commandButton value="Recalcular Salários" action="#{pessoaBean.recalcular}" />
+
+        <h:dataTable value="#{pessoaBean.pessoasPaginadas}" var="pessoa" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{pessoa.pessoaId}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{pessoa.nomePessoa}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cargo</f:facet>
+                #{pessoa.nomeCargo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Salário</f:facet>
+                R$ #{pessoa.salario}
+            </h:column>
+            <h:column>
+                <h:commandButton value="Excluir" action="#{pessoaBean.excluirPessoa(pessoa.pessoaId)}" />
+            </h:column>
+        </h:dataTable>
+
+        <br/>
+
+        <h:commandButton value="Página Anterior" action="#{pessoaBean.paginaAnterior}" />
+        <h:commandButton value="Próxima Página" action="#{pessoaBean.proximaPagina}" />
+
+		<h2>Adicionar Nova Pessoa</h2>
+		<h:panelGrid columns="2" columnClasses="label,value" cellpadding="4">
+		    <h:outputLabel for="nome" value="Nome:" />
+		    <h:inputText id="nome" value="#{pessoaBean.novaPessoaNome}" />
+
+		    <h:outputLabel for="cidade" value="Cidade:" />
+		    <h:inputText id="cidade" value="#{pessoaBean.novaPessoaCidade}" />
+
+		    <h:outputLabel for="email" value="Email:" />
+		    <h:inputText id="email" value="#{pessoaBean.novaPessoaEmail}" />
+
+		    <h:outputLabel for="cep" value="CEP:" />
+		    <h:inputText id="cep" value="#{pessoaBean.novaPessoaCep}" />
+
+		    <h:outputLabel for="endereco" value="Endereço:" />
+		    <h:inputText id="endereco" value="#{pessoaBean.novaPessoaEndereco}" />
+
+		    <h:outputLabel for="pais" value="País:" />
+		    <h:inputText id="pais" value="#{pessoaBean.novaPessoaPais}" />
+
+		    <h:outputLabel for="usuario" value="Usuário:" />
+		    <h:inputText id="usuario" value="#{pessoaBean.novaPessoaUsuario}" />
+
+		    <h:outputLabel for="telefone" value="Telefone:" />
+		    <h:inputText id="telefone" value="#{pessoaBean.novaPessoaTelefone}" />
+
+			<h:outputLabel for="dataNasc" value="Data de Nascimento:" />
+			<h:inputText id="dataNasc" value="#{pessoaBean.novaPessoaDataNascimento}">
+			    <f:convertDateTime pattern="dd/MM/yyyy"
+			                       timeZone="America/Sao_Paulo"
+			                       converterMessage="Use o formato dd/MM/yyyy (Ex.: 23/02/1989)" />
+			</h:inputText>
+			
+		    <h:outputLabel for="cargoId" value="Cargo (ID):" />
+			<h:inputText id="cargoId" value="#{pessoaBean.novaPessoaCargoId}">
+			    <f:convertNumber integerOnly="true" />
+			</h:inputText>
+		</h:panelGrid>
+
+		<h:commandButton value="Adicionar" action="#{pessoaBean.adicionarPessoa}" />
+
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,26 @@
+
+<web-app xmlns="http://jakarta.ee/xml/ns/jakartaee" version="5.0">
+  <context-param>
+    <param-name>jakarta.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>listagemPessoas.xhtml</welcome-file>
+  </welcome-file-list>
+  
+  <listener>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+</listener>
+</web-app>
